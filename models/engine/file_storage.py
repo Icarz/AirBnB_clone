@@ -2,6 +2,10 @@
 import json
 from models.base_model import BaseModel
 import os
+from models.user import User
+
+classes = {"BaseModel": BaseModel, "User": User}
+
 
 class FileStorage:
     """Serializes instances to a JSON file and deserializes JSON file to instances."""
