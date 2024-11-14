@@ -3,9 +3,22 @@ import json
 from models.base_model import BaseModel
 import os
 from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
-classes = {"BaseModel": BaseModel, "User": User}
-
+# Updated classes dictionary to include new classes
+classes = {
+    "BaseModel": BaseModel,
+    "User": User,
+    "State": State,
+    "City": City,
+    "Place": Place,
+    "Amenity": Amenity,
+    "Review": Review,
+}
 
 class FileStorage:
     """Serializes instances to a JSON file and deserializes JSON file to instances."""
@@ -34,4 +47,13 @@ class FileStorage:
             with open(self.__file_path, 'r') as f:
                 obj_dict = json.load(f)
                 for key, value in obj_dict.items():
-                    self.__objects[key] = BaseModel(**value)
+                    class_name = key.split('.')[0]
+                    if class_name in classes:
+                        self.__objects[key] = classes[class_name](**value)
+
+    def delete(self, obj=None):
+        """Deletes an object from __objects."""
+        if obj:
+            key = f"{obj.__class__.__name__}.{obj.id}"
+            if key in self.__objects:
+                del self.__objects[key]

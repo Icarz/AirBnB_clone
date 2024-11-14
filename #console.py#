@@ -7,24 +7,22 @@ from models import storage
 from models.user import User
 from models.state import State
 from models.city import City
-from models.amenity import Amenity
 from models.place import Place
+from models.amenity import Amenity
 from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for AirBnB clone"""
     prompt = "(hbnb) "
-    
-    # Valid classes for the command interpreter
     valid_classes = {
         "BaseModel": BaseModel,
         "User": User,
         "State": State,
         "City": City,
-        "Amenity": Amenity,
         "Place": Place,
-        "Review": Review
+        "Amenity": Amenity,
+        "Review": Review,
     }
 
     def do_quit(self, arg):
@@ -41,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it, and prints the id."""
+        """Creates a new instance of a valid class, saves it, and prints the id."""
         if not arg:
             print("** class name missing **")
             return
@@ -91,22 +89,23 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, arg):
-        """Prints all string representations of all instances based on class name or all classes."""
+       """Prints all string representations of all instances based on class name or all classes."""
         if not arg:
-            # If no argument is passed, print all instances from all classes
-            instances = storage.all()
+        # If no argument is passed, print all instances from all classes
+        instances = storage.all()
             print([str(instance) for instance in instances.values()])
         else:
-            # If a class name is provided, print instances of that class
-            if arg not in self.valid_classes:
-                print("** class doesn't exist **")
-                return
-            instances = storage.all()
-            class_instances = [str(instance) for key, instance in instances.items() if key.startswith(arg)]
-            if not class_instances:
-                print("** no instances found **")
-            else:
-                print(class_instances)
+        # If a class name is provided, print instances of that class
+        if arg not in self.valid_classes:
+            print("** class doesn't exist **")
+            return
+        instances = storage.all()
+        class_instances = [str(instance) for key, instance in instances.items() if key.startswith(arg)]
+        if not class_instances:
+            print("** no instances found **")
+        else:
+            print(class_instances)
+
 
     def do_update(self, arg):
         """Updates an instance by adding or updating an attribute."""
