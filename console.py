@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-"""Command interpreter for the HBNB project"""
-
 import cmd
 from models.base_model import BaseModel
 from models import storage
@@ -101,13 +99,37 @@ class HBNBCommand(cmd.Cmd):
             if arg not in self.valid_classes:
                 print("** class doesn't exist **")
                 return
-            instances = storage.all()
-            class_instances = [str(instance) for key, instance in instances.items() if key.startswith(arg)]
-            if not class_instances:
+            instances = storage.all(arg)
+            if not instances:
                 print("** no instances found **")
-            else:
-                print(class_instances)
+                return
+            print([str(instance) for instance in instances.values()])
+    def default(self, line):
+        args = line.split('.')
+        if len(args) == 2:
+            class_name = args[0]
+            command = args[1].strip("()")
 
+            if class_name in self.valid_classes:
+                if command == "all":
+                    self.do_all(class_name)
+                elif command == "count":
+                    self.do_count(class_name)
+                else:
+                    print(f"*** Unknow synatx: {line}")
+            else:
+                print(f"*** unknown class: {class_name}")
+        else:
+            print(f"*** unknown syntax: {line}")
+
+    def do_count(self, class_name):
+        if class_name not in self.valid_classes:
+            print(f"***Unknow class: {class_name}")
+            return
+        all_objects = storage.all()
+        count = sum(1 for obj in all_objects.values() if obj.__class__.__name__ == class_name)
+        print(count)
+        
     def do_update(self, arg):
         """Updates an instance by adding or updating an attribute."""
         args = arg.split()
@@ -145,4 +167,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
