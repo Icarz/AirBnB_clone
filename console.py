@@ -156,34 +156,31 @@ class HBNBCommand(cmd.Cmd):
 
         try:
             command, params = rest.split('(', 1)
-            params = params.rstrip(')')  # Remove closing parenthesis
+            params = params[:-1]  # Remove closing parenthesis
+
+            # Pre-process params to remove quotes
+            params = params.replace('"', '')  # Remove all double quotes
 
             if command == "all":
                 self.do_all(class_name)
             elif command == "count":
                 self.do_count(class_name)
             elif command == "show":
-                param = params.strip('"')  # Precompute the stripped value
-                self.do_show(f"{class_name} {param}")
+                self.do_show(f"{class_name} {params}")
             elif command == "destroy":
-                param = params.strip('"')  # Precompute the stripped value
-                self.do_destroy(f"{class_name} {param}")
+                self.do_destroy(f"{class_name} {params}")
             elif command == "update":
                 if params.startswith("{") and params.endswith("}"):
                     instance_id, attr_dict = params.split(", ", 1)
-                    instance_id = instance_id.strip('"')  # Precompute the stripped value
                     attr_dict = json.loads(attr_dict)
                     for key, value in attr_dict.items():
-                        self.do_update(f"{class_name} {instance_id} {key} {value}")
+                        self.do_update(f"{class_name} {instance_id.strip()} {key} {value}")
                 else:
                     instance_id, attr_name, attr_value = params.split(", ")
-                    instance_id = instance_id.strip('"')  # Precompute the stripped value
-                    attr_name = attr_name.strip('"')
-                    attr_value = attr_value.strip('"')
-                    self.do_update(f"{class_name} {instance_id} {attr_name} {attr_value}")
+                    self.do_update(f"{class_name} {instance_id.strip()} {attr_name.strip()} {attr_value.strip()}")
             else:
                 print(f"*** unknown syntax: {line}")
-        except Exception as e:
+        except Exception:
             print(f"*** unknown syntax: {line}")
 
 
