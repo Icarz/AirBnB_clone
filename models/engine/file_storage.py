@@ -9,7 +9,6 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
-# Updated classes dictionary to include new classes
 classes = {
     "BaseModel": BaseModel,
     "User": User,
@@ -26,9 +25,15 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def all(self, cls=None):
         """Returns the dictionary of stored objects."""
-        return self.__objects
+        if cls is None:
+            return self.__objects
+        else:
+            return {
+                key: obj for key, obj in self.__objects.items()
+                if obj.__class__.__name__ == cls
+            }
 
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id"""
@@ -57,3 +62,4 @@ class FileStorage:
             key = f"{obj.__class__.__name__}.{obj.id}"
             if key in self.__objects:
                 del self.__objects[key]
+
