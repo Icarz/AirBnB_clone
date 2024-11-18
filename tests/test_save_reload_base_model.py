@@ -20,4 +20,3 @@ my_model.save()
 
 # Print the newly created object
 print(my_model)
-
