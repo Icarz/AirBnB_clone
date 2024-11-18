@@ -5,9 +5,10 @@ import uuid
 
 class BaseModel:
     """Defines all common attributes and methods for other classes."""
+
     def __init__(self, *args, **kwargs):
         from models import storage
-        
+
         if kwargs:
             if "__class__" in kwargs:
                 del kwargs["__class__"]
@@ -22,7 +23,6 @@ class BaseModel:
             self.created_at = dt.now()
             self.updated_at = dt.now()
             storage.new(self)
-            
 
     def save(self):
         """Updates the 'updated_at' attribute with the current datetime."""

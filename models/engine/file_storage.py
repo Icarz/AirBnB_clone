@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+"""Defines the FileStorage class for serializing and deserializing objects."""
+
 import json
-from models.base_model import BaseModel
 import os
+from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
@@ -19,8 +21,9 @@ classes = {
     "Review": Review,
 }
 
+
 class FileStorage:
-    """Serializes instances to a JSON file and deserializes JSON file to instances."""
+    """Serializes instances to a JSON file."""
 
     __file_path = "file.json"
     __objects = {}
@@ -36,7 +39,7 @@ class FileStorage:
             }
 
     def new(self, obj):
-        """Sets in __objects the obj with key <obj class name>.id"""
+        """Sets in __objects the obj with key <obj class name>.id."""
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
 
@@ -62,4 +65,3 @@ class FileStorage:
             key = f"{obj.__class__.__name__}.{obj.id}"
             if key in self.__objects:
                 del self.__objects[key]
-

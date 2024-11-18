@@ -1,6 +1,10 @@
+#!/usr/bin/python3
+
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
+    """Represents a Place that inherits from BaseModel."""
     city_id = ""
     user_id = ""
     name = ""
