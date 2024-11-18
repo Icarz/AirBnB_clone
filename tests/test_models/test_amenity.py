@@ -191,10 +191,10 @@ class TestAmenityToDict(unittest.TestCase):
         self.amenity.id = "123abc"
         self.amenity.created_at = self.amenity.updated_at = dt
         expected_dict = {
-            'id': '123abc',
-            '__class__': 'Amenity',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
+            "id": "123abc",
+            "__class__": "Amenity",
+            "created_at": dt.isoformat(),
+            "updated_at": dt.isoformat(),
         }
         self.assertDictEqual(self.amenity.to_dict(), expected_dict)
 

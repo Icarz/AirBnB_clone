@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-'''
+"""
 This module contains the FileStorage class, which serializes instances
 to a JSON file and deserializes JSON file to instances.
-'''
+"""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -11,7 +11,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-
 
 
 class FileStorage:
@@ -24,7 +23,7 @@ class FileStorage:
         "City": City,
         "Amenity": Amenity,
         "Place": Place,
-        "Review": Review
+        "Review": Review,
     }
 
     def all(self):
@@ -38,9 +37,7 @@ class FileStorage:
 
     def save(self):
         """Serializes __objects to the JSON file."""
-        obj_dict = {
-            key: obj.to_dict() for key, obj in FileStorage.__objects.items()
-        }
+        obj_dict = {key: obj.to_dict() for key, obj in FileStorage.__objects.items()}
         with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
             json.dump(obj_dict, file)
 
@@ -52,7 +49,6 @@ class FileStorage:
                 for key, obj_data in obj_dict.items():
                     class_name = obj_data["__class__"]
                     if class_name in self.__classes:
-                        self.__objects[key] = (
-                            self.__classes[class_name](**obj_data))
+                        self.__objects[key] = self.__classes[class_name](**obj_data)
         except Exception:
             pass

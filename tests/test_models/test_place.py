@@ -157,8 +157,7 @@ class TestPlaceInstantiation(unittest.TestCase):
         self.assertEqual(place.city_id, "1234")
         self.assertEqual(place.user_id, "5678")
         self.assertEqual(place.name, "YO MAMA's BEACH HOUSE")
-        self.assertEqual(
-            place.description, "Big house Too expensive for you anyway.")
+        self.assertEqual(place.description, "Big house Too expensive for you anyway.")
         self.assertEqual(place.number_rooms, 3)
         self.assertEqual(place.number_bathrooms, 2)
         self.assertEqual(place.max_guest, 6)
@@ -266,10 +265,10 @@ class TestPlaceToDict(unittest.TestCase):
         place.id = "123456"
         place.created_at = place.updated_at = dt
         tdict = {
-            'id': '123456',
-            '__class__': 'Place',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
+            "id": "123456",
+            "__class__": "Place",
+            "created_at": dt.isoformat(),
+            "updated_at": dt.isoformat(),
         }
         self.assertDictEqual(place.to_dict(), tdict)
 

@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-'''
+"""
 Unit tests for the FileStorage class.
-'''
+"""
 
 import unittest
 import os
@@ -32,6 +32,7 @@ class TestFileStorageInstantiation(unittest.TestCase):
     def test_storage_initialize(self):
         """Test that storage is an instance of FileStorage."""
         from models import storage
+
         self.assertEqual(type(storage), FileStorage)
 
 
@@ -206,5 +207,5 @@ class TestFileStorageReload(unittest.TestCase):
             self.storage.reload(None)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

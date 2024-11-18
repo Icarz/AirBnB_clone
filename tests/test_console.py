@@ -123,15 +123,7 @@ class TestHBNBCommandCreate(unittest.TestCase):
 
     def test_create_object(self):
         """Test create for valid classes."""
-        classes = [
-            "BaseModel",
-            "User",
-            "State",
-            "City",
-            "Amenity",
-            "Place",
-            "Review"
-        ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"create {cls}"))
@@ -181,14 +173,7 @@ class TestHBNBCommandShow(unittest.TestCase):
     def test_show_missing_id(self):
         """Test 'show' with a missing ID."""
         correct = "** instance id missing **"
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"show {cls}"))
                 self.assertEqual(correct, output.getvalue().strip())
@@ -196,28 +181,14 @@ class TestHBNBCommandShow(unittest.TestCase):
     def test_show_no_instance_found(self):
         """Test 'show' when no instance is found."""
         correct = "** no instance found **"
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"show {cls} 1"))
                 self.assertEqual(correct, output.getvalue().strip())
 
     def test_show_valid_object_space_notation(self):
         """Test 'show' with valid objects using space notation."""
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             obj_id = self._create_test_object(cls)
             with patch("sys.stdout", new=StringIO()) as output:
                 obj = storage.all()[f"{cls}.{obj_id}"]
@@ -226,14 +197,7 @@ class TestHBNBCommandShow(unittest.TestCase):
 
     def test_show_valid_object_dot_notation(self):
         """Test 'show' with valid objects using dot notation."""
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             obj_id = self._create_test_object(cls)
             with patch("sys.stdout", new=StringIO()) as output:
                 obj = storage.all()[f"{cls}.{obj_id}"]
@@ -291,14 +255,7 @@ class TestHBNBCommandDestroy(unittest.TestCase):
     def test_destroy_missing_id(self):
         """Test 'destroy' with a missing ID."""
         correct = "** instance id missing **"
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"destroy {cls}"))
                 self.assertEqual(correct, output.getvalue().strip())
@@ -309,14 +266,7 @@ class TestHBNBCommandDestroy(unittest.TestCase):
     def test_destroy_invalid_id(self):
         """Test 'destroy' with an invalid ID."""
         correct = "** no instance found **"
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"destroy {cls} 1"))
                 self.assertEqual(correct, output.getvalue().strip())
@@ -326,34 +276,18 @@ class TestHBNBCommandDestroy(unittest.TestCase):
 
     def test_destroy_valid_object_space_notation(self):
         """Test 'destroy' with valid objects using space notation."""
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             obj_id = self._create_test_object(cls)
             with patch("sys.stdout", new=StringIO()):
-                self.assertFalse(
-                    HBNBCommand().onecmd(f"destroy {cls} {obj_id}"))
+                self.assertFalse(HBNBCommand().onecmd(f"destroy {cls} {obj_id}"))
             self.assertNotIn(f"{cls}.{obj_id}", storage.all())
 
     def test_destroy_valid_object_dot_notation(self):
         """Test 'destroy' with valid objects using dot notation."""
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             obj_id = self._create_test_object(cls)
             with patch("sys.stdout", new=StringIO()):
-                self.assertFalse(HBNBCommand().onecmd(
-                    f"{cls}.destroy({obj_id})"))
+                self.assertFalse(HBNBCommand().onecmd(f"{cls}.destroy({obj_id})"))
             self.assertNotIn(f"{cls}.{obj_id}", storage.all())
 
 
@@ -383,9 +317,7 @@ class TestHBNBCommandAll(unittest.TestCase):
 
     def _create_test_objects(self):
         """Helper method to create objects for all classes."""
-        classes = [
-            "BaseModel", "User", "State", "City", "Amenity", "Place", "Review"
-        ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             with patch("sys.stdout", new=StringIO()):
                 self.assertFalse(HBNBCommand().onecmd(f"create {cls}"))
@@ -414,14 +346,7 @@ class TestHBNBCommandAll(unittest.TestCase):
     def test_all_objects_dot_notation(self):
         """Test 'all' with objects using dot notation."""
         self._create_test_objects()
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"{cls}.all()"))
                 output_value = output.getvalue().strip()
@@ -430,52 +355,40 @@ class TestHBNBCommandAll(unittest.TestCase):
     def test_all_single_object_space_notation(self):
         """Test 'all' for a single class using space notation."""
         self._create_test_objects()
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"all {cls}"))
                 output_value = output.getvalue().strip()
                 self.assertIn(cls, output_value)
                 for other_cls in [
-                        "BaseModel",
-                        "User",
-                        "State",
-                        "City",
-                        "Amenity",
-                        "Place",
-                        "Review"]:
+                    "BaseModel",
+                    "User",
+                    "State",
+                    "City",
+                    "Amenity",
+                    "Place",
+                    "Review",
+                ]:
                     if other_cls != cls:
                         self.assertNotIn(other_cls, output_value)
 
     def test_all_single_object_dot_notation(self):
         """Test 'all' for a single class using dot notation."""
         self._create_test_objects()
-        for cls in [
-                "BaseModel",
-                "User",
-                "State",
-                "City",
-                "Amenity",
-                "Place",
-                "Review"]:
+        for cls in ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"{cls}.all()"))
                 output_value = output.getvalue().strip()
                 self.assertIn(cls, output_value)
                 for other_cls in [
-                        "BaseModel",
-                        "User",
-                        "State",
-                        "City",
-                        "Amenity",
-                        "Place",
-                        "Review"]:
+                    "BaseModel",
+                    "User",
+                    "State",
+                    "City",
+                    "Amenity",
+                    "Place",
+                    "Review",
+                ]:
                     if other_cls != cls:
                         self.assertNotIn(other_cls, output_value)
 
@@ -522,15 +435,7 @@ class TestHBNBCommandUpdate(unittest.TestCase):
     def test_update_missing_id(self):
         """Test 'update' with a missing ID."""
         correct = "** instance id missing **"
-        classes = [
-            "BaseModel",
-            "User",
-            "State",
-            "City",
-            "Amenity",
-            "Place",
-            "Review"
-            ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"update {cls}"))
@@ -542,15 +447,7 @@ class TestHBNBCommandUpdate(unittest.TestCase):
     def test_update_invalid_id(self):
         """Test 'update' with an invalid ID."""
         correct = "** no instance found **"
-        classes = [
-            "BaseModel",
-            "User",
-            "State",
-            "City",
-            "Amenity",
-            "Place",
-            "Review"
-            ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(HBNBCommand().onecmd(f"update {cls} 1234"))
@@ -562,60 +459,36 @@ class TestHBNBCommandUpdate(unittest.TestCase):
     def test_update_missing_attr_name(self):
         """Test 'update' with a missing attribute name."""
         correct = "** attribute name missing **"
-        classes = [
-            "BaseModel",
-            "User",
-            "State",
-            "City",
-            "Amenity",
-            "Place",
-            "Review"
-            ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             obj_id = self._create_object(cls)
             with patch("sys.stdout", new=StringIO()) as output:
-                self.assertFalse(
-                    HBNBCommand().onecmd(f"update {cls} {obj_id}"))
+                self.assertFalse(HBNBCommand().onecmd(f"update {cls} {obj_id}"))
                 self.assertEqual(correct, output.getvalue().strip())
             with patch("sys.stdout", new=StringIO()) as output:
-                self.assertFalse(
-                    HBNBCommand().onecmd(f"{cls}.update({obj_id})"))
+                self.assertFalse(HBNBCommand().onecmd(f"{cls}.update({obj_id})"))
                 self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_missing_attr_value(self):
         """Test 'update' with a missing attribute value."""
         correct = "** value missing **"
-        classes = [
-            "BaseModel",
-            "User",
-            "State",
-            "City",
-            "Amenity",
-            "Place",
-            "Review"
-            ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             obj_id = self._create_object(cls)
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(
-                    HBNBCommand().onecmd(f"update {cls} {obj_id} attr_name"))
+                    HBNBCommand().onecmd(f"update {cls} {obj_id} attr_name")
+                )
                 self.assertEqual(correct, output.getvalue().strip())
             with patch("sys.stdout", new=StringIO()) as output:
                 self.assertFalse(
-                    HBNBCommand().onecmd(f"{cls}.update({obj_id}, attr_name)"))
+                    HBNBCommand().onecmd(f"{cls}.update({obj_id}, attr_name)")
+                )
                 self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_valid_string_attr(self):
         """Test 'update' with a valid string attribute."""
-        classes = [
-            "BaseModel",
-            "User",
-            "State",
-            "City",
-            "Amenity",
-            "Place",
-            "Review"
-            ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             obj_id = self._create_object(cls)
             cmd_space = f"update {cls} {obj_id} attr_name 'attr_value'"
@@ -643,11 +516,7 @@ class TestHBNBCommandUpdate(unittest.TestCase):
         """Test 'update' with a valid dictionary of attributes."""
         obj_id = self._create_object("BaseModel")
         dict_str = (
-            "{"
-            "'attr_name': 'attr_value', "
-            "'max_guest': 10, "
-            "'latitude': 3.14"
-            "}"
+            "{" "'attr_name': 'attr_value', " "'max_guest': 10, " "'latitude': 3.14" "}"
         )
         cmd_space = f"update BaseModel {obj_id} {dict_str}"
         cmd_dot = f"BaseModel.update({obj_id}, {dict_str})"
@@ -698,9 +567,7 @@ class TestHBNBCommandCount(unittest.TestCase):
 
     def test_count_objects(self):
         """Test 'count' command for each class."""
-        classes = [
-            "BaseModel", "User", "State", "City", "Amenity", "Place", "Review"
-        ]
+        classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
         for cls in classes:
             self._create_test_object(cls)
             count_output = self._get_count_output(cls)

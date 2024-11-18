@@ -144,12 +144,8 @@ class TestUserToDict(unittest.TestCase):
         user_dict = self.user.to_dict()
         self.assertIsInstance(user_dict["created_at"], str)
         self.assertIsInstance(user_dict["updated_at"], str)
-        self.assertEqual(
-            user_dict["created_at"], self.user.created_at.isoformat()
-        )
-        self.assertEqual(
-            user_dict["updated_at"], self.user.updated_at.isoformat()
-        )
+        self.assertEqual(user_dict["created_at"], self.user.created_at.isoformat())
+        self.assertEqual(user_dict["updated_at"], self.user.updated_at.isoformat())
 
     def test_to_dict_additional_attributes(self):
         """Test that to_dict() includes dynamically added attributes."""
@@ -179,7 +175,7 @@ class TestUserToDict(unittest.TestCase):
             "email": "agent@mi6.co.uk",
             "password": "shaken_not_stirred",
             "first_name": "James",
-            "last_name": "Bond"
+            "last_name": "Bond",
         }
         self.assertEqual(self.user.to_dict(), expected_dict)
 

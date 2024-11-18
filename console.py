@@ -17,7 +17,8 @@ from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """HBNB console"""
-    prompt = '(hbnb) '
+
+    prompt = "(hbnb) "
     classes = {
         "BaseModel": BaseModel,
         "User": User,
@@ -25,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         "City": City,
         "Place": Place,
         "Amenity": Amenity,
-        "Review": Review
+        "Review": Review,
     }
 
     def do_quit(self, arg):
@@ -165,10 +166,9 @@ class HBNBCommand(cmd.Cmd):
         elif isinstance(eval(args[2]), dict):
             updates = eval(args[2])
             for key, value in updates.items():
-                if (key in obj.__class__.__dict__ and
-                        type(
-                            obj.__class__.__dict__[key]
-                            ) in {str, int, float}):
+                if key in obj.__class__.__dict__ and type(
+                    obj.__class__.__dict__[key]
+                ) in {str, int, float}:
                     value_type = type(obj.__class__.__dict__[key])
                     obj.__dict__[key] = value_type(value)
                 else:
@@ -183,12 +183,11 @@ class HBNBCommand(cmd.Cmd):
         """
         match = re.search(r"\.", arg)
         if match:
-            class_name, command_with_args = arg[
-                :match.start()], arg[match.end():]
+            class_name, command_with_args = arg[: match.start()], arg[match.end() :]
             if class_name in HBNBCommand.classes:
                 match = re.search(r"\((.*?)\)", command_with_args)
                 if match:
-                    command = command_with_args[:match.start()]
+                    command = command_with_args[: match.start()]
                     command_args = match.group(1)
                     method = getattr(self, f"do_{command}", None)
                     if method:
@@ -207,15 +206,15 @@ class HBNBCommand(cmd.Cmd):
             return [item.strip(",") for item in shlex.split(input_str)]
 
         if curlies:
-            lexer = split_and_strip(arg[:curlies.span()[0]])
+            lexer = split_and_strip(arg[: curlies.span()[0]])
             lexer.append(curlies.group())
             return lexer
         elif brackets:
-            lexer = split_and_strip(arg[:brackets.span()[0]])
+            lexer = split_and_strip(arg[: brackets.span()[0]])
             lexer.append(brackets.group())
             return lexer
         return split_and_strip(arg)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()

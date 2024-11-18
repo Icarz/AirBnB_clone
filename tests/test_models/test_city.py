@@ -211,10 +211,10 @@ class TestCityToDict(unittest.TestCase):
         city.id = "123456"
         city.created_at = city.updated_at = dt
         tdict = {
-            'id': '123456',
-            '__class__': 'City',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
+            "id": "123456",
+            "__class__": "City",
+            "created_at": dt.isoformat(),
+            "updated_at": dt.isoformat(),
         }
         self.assertDictEqual(city.to_dict(), tdict)
 

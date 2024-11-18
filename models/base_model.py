@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
+"""
 BaseModel defines all common attributes/methods for other classes.
-'''
+"""
 import uuid
 from datetime import datetime
 
@@ -33,6 +33,7 @@ class BaseModel:
             self.updated_at = datetime.now()
 
             from models import storage
+
             storage.new(self)
 
     def __str__(self):
@@ -44,6 +45,7 @@ class BaseModel:
         self.updated_at = datetime.now()
 
         from models import storage
+
         storage.save()
 
     def to_dict(self):

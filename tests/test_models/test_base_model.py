@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
+"""
 Comprehensive tests for the BaseModel class.
-'''
+"""
 
 import unittest
 import os
@@ -79,8 +79,7 @@ class TestBaseModelInstantiation(unittest.TestCase):
     def test_instantiation_with_args_and_kwargs(self):
         dt = datetime.today()
         dt_iso = dt.isoformat()
-        base_model = BaseModel(
-            "12", id="6789", created_at=dt_iso, updated_at=dt_iso)
+        base_model = BaseModel("12", id="6789", created_at=dt_iso, updated_at=dt_iso)
         self.assertEqual(base_model.id, "6789")
         self.assertEqual(base_model.created_at, dt)
         self.assertEqual(base_model.updated_at, dt)
@@ -179,8 +178,7 @@ class TestBaseModelSave(unittest.TestCase):
         with open("file.json", "r") as f:
             content = json.load(f)
         self.assertIn(f"BaseModel.{base_model.id}", content)
-        self.assertEqual(
-            content[f"BaseModel.{base_model.id}"]["name"], "Updated Name")
+        self.assertEqual(content[f"BaseModel.{base_model.id}"]["name"], "Updated Name")
         self.assertGreater(base_model.updated_at, old_updated_at)
 
 
@@ -217,10 +215,10 @@ class TestBaseModelToDict(unittest.TestCase):
         base_model.id = "123456"
         base_model.created_at = base_model.updated_at = dt
         tdict = {
-            'id': '123456',
-            '__class__': 'BaseModel',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat()
+            "id": "123456",
+            "__class__": "BaseModel",
+            "created_at": dt.isoformat(),
+            "updated_at": dt.isoformat(),
         }
         self.assertDictEqual(base_model.to_dict(), tdict)
 
@@ -254,5 +252,5 @@ class TestBaseModelToDict(unittest.TestCase):
         self.assertEqual(model_dict["age"], 52)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

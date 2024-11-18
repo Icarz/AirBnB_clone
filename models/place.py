@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
+"""
 Defines the Place class and its relationships.
-'''
+"""
 from models.base_model import BaseModel
 
 
@@ -21,6 +21,7 @@ class Place(BaseModel):
         - longitude: float (0.0)
         - amenity_ids: list of strings, will store Amenity.id later
     """
+
     city_id = ""
     user_id = ""
     name = ""
