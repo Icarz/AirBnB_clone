@@ -89,44 +89,6 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, arg):
-<<<<<<< HEAD
-        """Prints all string representations of all instances based on class name or all classes."""
-        if arg.endswith(".all()"):
-            # Extract the class name before .all()
-            class_name = arg[:-5]
-            
-            # Validate the class name
-            if class_name not in self.valid_classes:
-                print("** class doesn't exist **")
-                return
-            
-            # Get all instances of the class
-            class_type = self.valid_classes[class_name]
-            instances = storage.all(class_type)
-            
-            # If no instances are found, print a message
-            if not instances:
-                print("** no instances found **")
-            else:
-                # Print all instances of that class
-                print([str(instance) for instance in instances.values()])
-        else:
-            # If no argument is passed, print all instances from all classes
-            if not arg:
-                instances = storage.all()
-                print([str(instance) for instance in instances.values()])
-            else:
-                # If a class name is provided, print instances of that class
-                if arg not in self.valid_classes:
-                    print("** class doesn't exist **")
-                    return
-                instances = storage.all()
-                class_instances = [str(instance) for key, instance in instances.items() if key.startswith(arg)]
-                if not class_instances:
-                    print("** no instances found **")
-                else:
-                    print(class_instances)
-=======
         """Show all instances, or all instances of a specific class"""
         if arg and arg not in self.classes:
             print("** class doesn't exist **")
@@ -136,7 +98,6 @@ class HBNBCommand(cmd.Cmd):
             print([str(obj) for key, obj in instances.items() if key.startswith(arg)])
         else:
             print([str(obj) for obj in instances.values()])
->>>>>>> 651932ad71584304a4420bf6e10cb4553afebee1
 
     def do_update(self, arg):
         """Update an instance by adding or updating attributes"""
