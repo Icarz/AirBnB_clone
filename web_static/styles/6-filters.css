@@ -1,0 +1,105 @@
+/* Filter section container */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 0 20px;
+    position: relative; /* Needed for dropdown positioning */
+}
+
+/* Locations and Amenities containers */
+.filters .locations,
+.filters .amenities {
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #DDDDDD;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    position: relative; /* Needed for dropdown */
+}
+
+/* Remove border for the last filter */
+.filters .amenities {
+    border-right: none;
+}
+
+/* Titles inside filters */
+.filters h3 {
+    font-weight: 600;
+    margin: 0;
+    font-size: 16px;
+    color: #484848;
+}
+
+/* Subtitles inside filters */
+.filters h4 {
+    font-weight: 400;
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #484848;
+}
+
+/* Dropdown menu (popover) */
+.popover {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 70px; /* Below the filter section */
+    left: 0;
+    background-color: #FAFAFA;
+    width: 100%; /* Same width as the filter div */
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 10px;
+    list-style: none; /* Remove default bullets */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+/* Dropdown list items */
+.popover li {
+    padding: 5px 0;
+}
+
+/* State titles in the dropdown */
+.popover h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Nested city list */
+.popover ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+}
+
+/* Show dropdown on hover */
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
+    display: block;
+}
+
+/* Search button */
+.filters button {
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    font-size: 18px;
+    height: 48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.filters button:hover {
+    opacity: 0.9;
+}
+

@@ -1,17 +1,15 @@
-
-/*
- * === Footer style ===
- */
-/* Footer style */
+/* Footer styling */
 footer {
-            border-top: 1px solid #CCCCCC;
-            text-align: center;
-            background-color: #ffffff;
-            height: 60px;
-            width: 100%;
-            bottom: 0;
-            justify-content: center;
-            position: relative;
-            align-items: center;
-            display: flex;
+    background-color: #FFFFFF; /* White background */
+    height: 60px;
+    width: 100%;
+    border-top: 1px solid #CCCCCC;
+    position: fixed; /* Keep footer at the bottom */
+    bottom: 0;
+    left: 0;
+    display: flex; /* Use flexbox for centering text */
+    justify-content: center;
+    align-items: center;
+    color: #000000; /* Black text color */
+    font-weight: bold; /* Bold text */
 }

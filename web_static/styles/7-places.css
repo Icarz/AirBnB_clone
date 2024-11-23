@@ -1,0 +1,26 @@
+/* Places section */
+.places {
+    margin-top: 40px; /* Space above the Places section */
+    display: flex; /* Enable flexbox for the section */
+    flex-wrap: wrap; /* Allow wrapping of items if needed */
+    justify-content: center; /* Center-align items in the row */
+    gap: 20px; /* Space between place cards */
+}
+
+.places h1 {
+    font-size: 30px;
+    text-align: left;
+    color: #484848;
+    width: 100%; /* Ensures the heading spans the entire width */
+    margin-bottom: 20px;
+}
+
+/* Individual place articles */
+.places article {
+    width: 390px;
+    padding: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+    background-color: white;
+    text-align: center; /* Center text inside the article */
+}
